@@ -1,0 +1,7 @@
+{
+  "name": "zabai_exercise",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
