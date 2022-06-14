@@ -40,15 +40,10 @@ export class HomePage {
   }
 
   async loadFiles() {
-    const videoList = await Storage.get({key: FILE_KEY});
-    // Capacitor storage just plain text, we will store everything json stringified and then parse it back once we get it or set it to empty array.
-    this.myFiles = JSON.parse(videoList.value) || [];
+    const zipList = await Storage.get({key: FILE_KEY});
+    this.myFiles = JSON.parse(zipList.value) || [];
   }
 
-  // Helper
-  // if we want to store file with capacitor, we neet to store base64 string cause capacitor passes this information through bridge and store it in native device
-  // and therefore we need a base64 string but the file we download will be a blob first and 
-  // there's alse a capacitor community plugin to directly store a blob that you could use called capacitor-blob-writer
   private convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
     const reader = FileReader;
     reader.prototype.onerror = reject;
